@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Estudiante } from '../models/estudiante';
+import { EstudianteService } from '../../services/estudiante.service';
 
 @Component({
   selector: 'app-estudiante-registro',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstudianteRegistroComponent implements OnInit {
 
-  constructor() { }
+  estudiante: Estudiante;
+  constructor(private estudianteService: EstudianteService) { }
 
   ngOnInit() {
+    this.estudiante = new Estudiante();
+  }
+
+  addEs(){
+    this.estudianteService.post(this.estudiante).subscribe(e => {
+      if(e != null){
+        alert('Estudiante registrado');
+        this.estudiante = e;
+      }
+    });
   }
 
 }

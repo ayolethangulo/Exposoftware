@@ -6,5 +6,4 @@ export class Estudiante {
     segundoApellido: string;
     celular: string;
     correo: string;
-    nombreProyecto: string;
 }

@@ -10,10 +10,12 @@ namespace Datos
     {
         private readonly SqlConnection _connection;
         private readonly List<Docente> _docentes = new List<Docente>();
+        
         public DocenteRepository(ConnectionManager connection)
         {
             _connection = connection._conexion;
         }
+        
         public void Guardar(Docente docente)
         {
             using (var command = _connection.CreateCommand())

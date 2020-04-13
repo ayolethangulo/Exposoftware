@@ -35,9 +35,7 @@ import { ProyectoService } from './services/proyecto.service';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: '', component: HomeComponent, pathMatch: 'full' }
     ]),
     AppRoutingModule
   ],

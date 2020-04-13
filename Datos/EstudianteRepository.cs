@@ -10,10 +10,12 @@ namespace Datos
     {
         private readonly SqlConnection _connection;
         private readonly List<Estudiante> _estudiantes = new List<Estudiante>();
+        
         public EstudianteRepository(ConnectionManager connection)
         {
             _connection = connection._conexion;
         }
+
         public void Guardar(Estudiante estudiante)
         {
             using (var command = _connection.CreateCommand())
@@ -31,6 +33,63 @@ namespace Datos
                 command.Parameters.AddWithValue("@Correo", estudiante.Correo);
                 var filas = command.ExecuteNonQuery();
             }
+        }
+
+        public void Eliminar(Estudiante estudiante)
+        {
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "Delete from Estudiante where Identificacion=@Identificacion";
+                command.Parameters.AddWithValue("@Identificacion", estudiante.Identificacion);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public List<Estudiante> ConsultarTodos()
+        {
+            SqlDataReader dataReader;
+            List<Estudiante> estudiantes = new List<Estudiante>();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "Select * from Estudiante ";
+                dataReader = command.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        Estudiante estudiante = DataReaderMapToPerson(dataReader);
+                        estudiantes.Add(estudiante);
+                    }
+                }
+            }
+            return estudiantes;
+        }
+
+        public Estudiante BuscarPorIdentificacion(string identificacion)
+        {
+            SqlDataReader dataReader;
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "select * from Estudiante where Identificacion=@Identificacion";
+                command.Parameters.AddWithValue("@Identificacion", identificacion);
+                dataReader = command.ExecuteReader();
+                dataReader.Read();
+                return DataReaderMapToPerson(dataReader);
+            }
+        }
+
+        private Estudiante DataReaderMapToPerson(SqlDataReader dataReader)
+        {
+            if(!dataReader.HasRows) return null;
+            Estudiante estudiante = new Estudiante();
+            estudiante.Identificacion = (string)dataReader["Identificacion"];
+            estudiante.PrimerNombre = (string)dataReader["PrimerNombre"];
+            estudiante.SegundoNombre = (string)dataReader["SegundoNombre"];
+            estudiante.PrimerApellido = (string)dataReader["PrimerApellido"];
+            estudiante.SegundoApellido = (string)dataReader["SegundoApellido"];
+            estudiante.Celular = (string)dataReader["Celular"];
+            estudiante.Correo = (string)dataReader["Correo"];
+            return estudiante;
         }
 
     }

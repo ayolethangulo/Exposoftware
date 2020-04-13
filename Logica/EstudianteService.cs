@@ -31,8 +31,50 @@ namespace Logica
             }
             finally { _conexion.Close(); }
         }
+
+        public List<Estudiante> ConsultarTodos()
+        {
+            _conexion.Open();
+            List<Estudiante> estudiantes = _repositorio.ConsultarTodos();
+            _conexion.Close();
+            return estudiantes;
+        }
+
+        public string Eliminar(string identificacion)
+        {
+            try
+            {
+                _conexion.Open();
+                var estudiante = _repositorio.BuscarPorIdentificacion(identificacion);
+                if (estudiante != null)
+                {
+                    _repositorio.Eliminar(estudiante);
+                    _conexion.Close();
+                    return ($"El registro {estudiante.PrimerNombre} se ha eliminado satisfactoriamente.");
+                }
+                else
+                {
+                    return ($"Lo sentimos, {identificacion} no se encuentra registrada.");
+                }
+            }
+            catch (Exception e)
+            {
+
+                return $"Error de la Aplicación: {e.Message}";
+            }
+            finally { _conexion.Close(); }
+
+        }
+        public Estudiante BuscarxIdentificacion(string identificacion)
+        {
+            _conexion.Open();
+            Estudiante estudiante = _repositorio.BuscarPorIdentificacion(identificacion);
+            _conexion.Close();
+            return estudiante;
+        }
         
     }
+
      public class GuardarEstudianteResponse 
     {
         public GuardarEstudianteResponse(Estudiante estudiante)
