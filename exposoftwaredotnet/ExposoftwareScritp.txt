@@ -1,0 +1,56 @@
+CREATE DATABASE [ExposoftwareBD];
+USE  [ExposoftwareBD]
+
+CREATE TABLE [dbo].[Docente](
+	[Identificacion] [nvarchar](10) NOT NULL PRIMARY KEY,
+	[PrimerNombre] [nvarchar](20) NULL,
+	[SegundoNombre] [nvarchar](20) NULL,
+	[PrimerApellido] [nvarchar](20) NULL,
+	[SegundoApellido] [nvarchar](20) NULL,
+	[Celular] [nvarchar](10) NULL,
+	[Correo] [nvarchar](50) NULL,
+	[TipoDocente] [nvarchar](30) NULL,
+)
+CREATE TABLE [dbo].[LiderProyecto](
+	[Identificacion] [nvarchar](10) NOT NULL PRIMARY KEY,
+	[PrimerNombre] [nvarchar](20) NULL,
+	[SegundoNombre] [nvarchar](20) NULL,
+	[PrimerApellido] [nvarchar](20) NULL,
+	[SegundoApellido] [nvarchar](20) NULL,
+	[Celular] [nvarchar](10) NULL,
+	[Correo] [nvarchar](50) NULL,
+	[TipoDocente] [nvarchar](30) NULL,
+)
+CREATE TABLE [dbo].[Asignatura](
+	[IdAsignatura] [nvarchar](4) NOT NULL PRIMARY KEY,
+	[Nombre] [nvarchar](50) NULL,
+)
+
+CREATE TABLE [dbo].[Proyecto](
+	[Identificacion] [nvarchar](10) NOT NULL,
+	[Estudiante] [nvarchar](10) NOT NULL,
+	[Asignatura] [nvarchar](4) NOT NULL,
+	[Nombre] [nvarchar](100) NOT NULL,
+	[Semestre] [nvarchar](2) NULL,
+	[Resumen] [nvarchar](250) NULL,
+	[Metodologia] [nvarchar](250) NULL,
+	[Resultados] [nvarchar](250) NULL,
+	[Estado] [nvarchar](11) NULL,
+	FOREIGN KEY (Identificacion) REFERENCES LiderProyecto(Identificacion),
+	FOREIGN KEY (Asignatura) REFERENCES Asignatura(IdAsignatura),
+	FOREIGN KEY (Estudiante) REFERENCES Estudiante(Identificacion)
+)
+
+drop table Proyecto;
+CREATE TABLE [dbo].[Estudiante](
+	[Identificacion] [nvarchar](10) NOT NULL PRIMARY KEY,
+	[PrimerNombre] [nvarchar](20) NULL,
+	[SegundoNombre] [nvarchar](20) NULL,
+	[PrimerApellido] [nvarchar](20) NULL,
+	[SegundoApellido] [nvarchar](20) NULL,
+	[Celular] [nvarchar](10) NULL,
+	[Correo] [nvarchar](50) NULL,
+)
+
+
+GO

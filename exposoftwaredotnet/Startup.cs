@@ -5,6 +5,11 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+<<<<<<< HEAD
+=======
+using Microsoft.OpenApi.Models;
+using System;
+>>>>>>> 263e3fb76fb00cc3f8b3e4293fb6d4a78ff281da
 
 namespace exposoftwaredotnet
 {
@@ -21,6 +26,31 @@ namespace exposoftwaredotnet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+<<<<<<< HEAD
+=======
+            //Agregar OpenApi Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "School API",
+                    Description = "School API - ASP.NET Core Web API",
+                    TermsOfService = new Uri("https://cla.dotnetfoundation.org/"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Ana Angulo",
+                        Email = string.Empty,
+                        Url = new Uri("https://github.com/ayolethangulo/Exposoftware"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Licencia dotnet foundation",
+                        Url = new Uri("https://www.byasystems.co/license"),
+                    }
+                });
+            });
+>>>>>>> 263e3fb76fb00cc3f8b3e4293fb6d4a78ff281da
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -57,6 +87,16 @@ namespace exposoftwaredotnet
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
+<<<<<<< HEAD
+=======
+             //start swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+            //end swagger
+>>>>>>> 263e3fb76fb00cc3f8b3e4293fb6d4a78ff281da
 
             app.UseSpa(spa =>
             {

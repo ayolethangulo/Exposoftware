@@ -1,4 +1,5 @@
 import { ProyectoRegistroComponent } from './inscripcion/proyecto-registro/proyecto-registro.component';
+<<<<<<< HEAD
 import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -37,6 +38,27 @@ const routes: Routes = [
   }
   
 
+=======
+import { DocenteRegistroComponent } from './inscripcion/docente-registro/docente-registro.component';
+import { EstudianteRegistroComponent } from './inscripcion/estudiante-registro/estudiante-registro.component';
+import { NgModule, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  {
+  path: 'proyectoRegistro',
+  component: ProyectoRegistroComponent
+  },
+  {
+    path: 'docenteRegistro',
+    component: DocenteRegistroComponent
+  },
+  {
+    path: 'estudianteRegistro',
+    component: EstudianteRegistroComponent
+  }
+>>>>>>> 263e3fb76fb00cc3f8b3e4293fb6d4a78ff281da
 ];
 
 @NgModule({
@@ -45,6 +67,10 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes)
   ],
+<<<<<<< HEAD
   exports: [RouterModule]
+=======
+  exports:[RouterModule]
+>>>>>>> 263e3fb76fb00cc3f8b3e4293fb6d4a78ff281da
 })
 export class AppRoutingModule { }
