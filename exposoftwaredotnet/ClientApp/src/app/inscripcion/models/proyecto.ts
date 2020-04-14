@@ -1,4 +1,6 @@
 export class Proyecto {
+<<<<<<< HEAD
+=======
 	identificacion: string;
 	estudiante: string;
 	asignatura: string;
@@ -8,4 +10,5 @@ export class Proyecto {
 	metodologia: string;
 	resultados: string;
 	estado: string;
+>>>>>>> 263e3fb76fb00cc3f8b3e4293fb6d4a78ff281da
 }

@@ -1,13 +1,22 @@
+<<<<<<< HEAD
+import { Injectable } from '@angular/core';
+=======
 import { Injectable, Inject } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Docente } from '../inscripcion/models/docente';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HandleHttpErrorService } from '../@base/handle-http-error.service';
+>>>>>>> 263e3fb76fb00cc3f8b3e4293fb6d4a78ff281da
 
 @Injectable({
   providedIn: 'root'
 })
+<<<<<<< HEAD
+export class DocenteService {
+
+  constructor() { }
+=======
 
 export class DocenteService {
 
@@ -34,4 +43,5 @@ export class DocenteService {
     catchError(this.handleErrorService.handleError<Docente>('Registrar Docente', null))
     );
   }
+>>>>>>> 263e3fb76fb00cc3f8b3e4293fb6d4a78ff281da
 }
